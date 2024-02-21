@@ -19,7 +19,7 @@ class App {
   }
   public listen() {
     this.http.listen(this.port, () => {
-      console.log('Server running on port: ' + this.port);
+      console.log('Server running on port: ', this.port);
     });
   }
 
@@ -33,6 +33,7 @@ class App {
       socket.join(data.roomId);
 
       socket.on('chat', (data) => {
+        console.log('🚀 ~ App ~ socket.on ~ data:', data);
         socket.broadcast.to(data.roomId).emit('chat', {
           message: data.message,
           username: data.username,
