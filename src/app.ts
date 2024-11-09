@@ -49,6 +49,13 @@ class App {
       });
     });
 
+    socket.on("sdp", (data) => {
+      socket.to(data.to).emit("sdp", {
+        description: data.description,
+        sender: data.sender,
+      });
+    });
+
     socket.on("chat", (data) => {
       console.log("🚀 ~ App ~ socket.on ~ data:", data);
       socket.broadcast.to(data.roomId).emit("chat", {
